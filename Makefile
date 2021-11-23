@@ -3,8 +3,11 @@ FLAGS= -Wall
 
 all: connections
 
-connections: main.o my_mat.o
-	$(CC) -o connections main.o my_mat.o
+connections: main.o my_mat.a
+	$(CC) -o connections main.o my_mat.a 
+
+my_mat.a: my_mat.o
+	ar rcs my_mat.a my_mat.o
 
 main.o: main.c  my_mat.h
 	$(CC) $(FLAGS) -c main.c  
